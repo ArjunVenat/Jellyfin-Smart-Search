@@ -36,5 +36,3 @@ venv/
 .idea/
 .DS_Store
 Thumbs.db
-
-docs/arch/ADR-000-template.md
