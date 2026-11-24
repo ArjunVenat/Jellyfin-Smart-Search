@@ -1,0 +1,40 @@
+# Secrets and local config
+.env
+.env.*
+*.key
+secrets/
+
+# Media and derived data. Never commit these (they must stay in the homelab)
+media/
+data/
+frames/
+*.mkv
+*.mp4
+*.avi
+*.srt
+*.ass
+*.vtt
+
+# Model weights and caches
+models/
+*.safetensors
+*.bin
+*.gguf
+.cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+docs\arch\ADR-000-template.md
