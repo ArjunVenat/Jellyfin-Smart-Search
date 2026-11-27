@@ -70,7 +70,18 @@ When a user of the Jellyfin server searches for something like "red car" or "man
 
 The media lives on a TrueNAS server on the LAN. Nginx Proxy Manager is set up on the NAS so that a hostname can be used to reach the server. The files themselves can be accessed through an NFS share. Processing media files on the TrueNAS server is not ideal; a more powerful device that supports GPU passthrough should do it. The server that is optimized for streaming media through Jellyfin can be used the same way, streaming keyframes to a device with a GPU for embedding. The mini PCs are another candidate for decoding and streaming frames (see D2).
 
-<!-- TODO: library size (titles, hours), subtitle coverage (text vs. image-based, external vs. embedded), titles with no subtitles. -->
+### Library facts (census via the Jellyfin API, 2026-11-26)
+
+The repo is public, so only coarse figures are recorded here. Exact counts live in `docs/private/library-facts.md`, which is gitignored and stays local.
+
+- **Scale:** about 4,000 hours of video, mostly TV episodes, with movies making up roughly a third of the hours.
+- **Subtitle coverage:** every movie and about 96% of episodes have English text subtitles. The rest (a few percent of episodes, concentrated in a handful of series) have only image-based subtitles, only other-language subtitles, or none.
+- **Subtitle formats:** text subtitles are mostly SRT, with a substantial share of ASS. Most are embedded; a meaningful share are external sidecar files. Image-based subtitles (PGS/VobSub) are all embedded.
+
+**Consequences:**
+- v1 needs no subtitle OCR or ASR. The eval corpus can be drawn entirely from media items that have English text subtitles.
+- Subtitle parsing has to handle both SRT and ASS (ASS carries styling and positioning markup to strip), and both embedded streams and external sidecar files.
+- Full-library indexing is on the order of 4,000 hours of video. That is the scale the throughput side of [ADR-002](arch/ADR-002-throughput-vs-latency.md) has to plan for post-v1.
 
 ## D7. System Overview
 
