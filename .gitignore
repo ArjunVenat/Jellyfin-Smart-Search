@@ -3,6 +3,8 @@
 .env.*
 *.key
 secrets/
+# Private facts about the media library (the repo is public)
+docs/private/
 
 # Media and derived data. Never commit these (they must stay in the homelab)
 media/
